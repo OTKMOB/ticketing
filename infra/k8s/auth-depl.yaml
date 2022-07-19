@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: us.gcr.io/ticketing-app-dev-355601/auth
+          image: otkmob/auth
           env:
             - name: JWT_KEY
               valueFrom:

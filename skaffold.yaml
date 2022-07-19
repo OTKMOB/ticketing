@@ -5,12 +5,12 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  # local:
-  #   push: false
-  googleCloudBuild:
-    projectId: ticketing-app-dev-355601
+  local:
+    push: false
+  # googleCloudBuild:
+  #   projectId: ticketing-app-dev-355601
   artifacts:
-    - image: us.gcr.io/ticketing-app-dev-355601/auth
+    - image: otkmob/auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -18,7 +18,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/ticketing-app-dev-355601/client
+    - image: otkmob/client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -26,7 +26,7 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
-    - image: us.gcr.io/ticketing-app-dev-355601/tickets
+    - image: otkmob/tickets
       context: tickets
       docker:
         dockerfile: Dockerfile
@@ -34,8 +34,16 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/ticketing-app-dev-355601/orders
+    - image: otkmob/orders
       context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: otkmob/expiration
+      context: expiration
       docker:
         dockerfile: Dockerfile
       sync:
