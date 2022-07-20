@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'infra/**'
-      
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,5 +15,5 @@ jobs:
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DO_ACCESS_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save 6452cf30-419c-4f2f-aa38-eaa6c4ba3228
+      - run: doctl kubernetes cluster kubeconfig save f4d2b8aa-c3e3-4387-aacd-a84a72ec6f1d
       - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
